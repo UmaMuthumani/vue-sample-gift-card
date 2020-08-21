@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from "vuex";
+
+
 Vue.use(Vuex);
 
 const authentication = {
@@ -12,7 +14,7 @@ const authentication = {
             return state.loggedInUserId;
         }
     },
-    mutuations: {
+    mutations: {
         setloggedInStatus(state, value) {
             state.loggedIn = value;
         },
@@ -24,7 +26,6 @@ const authentication = {
 
     }
 }
-
 export const store = new Vuex.Store({
     modules: {
         authentication: authentication
