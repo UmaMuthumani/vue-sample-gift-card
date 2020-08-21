@@ -1,0 +1,44 @@
+{
+  "consumers": [
+    {
+      "userName": "admin",
+      "userPassword": "b",
+      "userEmail": "",
+      "Admin": true,
+      "id": 1
+    },
+    {
+      "userName": "test",
+      "userPassword": "123",
+      "userEmail": "t@t.com",
+      "Admin": false,
+      "id": 2
+    }
+  ],
+  "orders": [
+    {
+      "FirstName": "test",
+      "LastName": "test",
+      "GiftCardValue": 11,
+      "TotalGiftCardValue": 11.5,
+      "MobileNumber": "123456789",
+      "Address": "123 street",
+      "userId": 2,
+      "status": "Ordered",
+      "orderedDate": "2020/02/02",
+      "id": 1
+    },
+    {
+      "FirstName": "test",
+      "LastName": "",
+      "GiftCardValue": "13",
+      "TotalGiftCardValue": 13.65,
+      "MobileNumber": "987547899",
+      "Address": "757 steet",
+      "userId": 0,
+      "status": "Ordered",
+      "orderedDate": "08/21/2020",
+      "id": 2
+    }
+  ]
+}
