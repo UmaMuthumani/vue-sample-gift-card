@@ -13,7 +13,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" v-model="orderDetails.LastName">
+              <input type="text" class="form-control" id="lastName" v-model="orderDetails.lastName">
             </div>
           </div>
           <div class="form-row">
@@ -55,7 +55,7 @@ export default {
         giftCardValue: "",
         mobileNumber: "",
         address: "",
-      },
+      }
     };
   },
   methods: {

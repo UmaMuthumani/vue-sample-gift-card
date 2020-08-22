@@ -54,7 +54,7 @@ export default {
         .then(
           (res) => {
             console.log(res.data.id);
-            this.$store.commit("setlogggedInStatus", true);
+            this.$store.commit("setloggedInStatus", true);
             this.$store.commit("setLoggedInUserId", res.data.id);
             this.$router.push({ path: "/order" });
           },

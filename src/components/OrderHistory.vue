@@ -23,7 +23,7 @@ export default {
         { key: "fullName", label: "Receipient Name" },
         { key: "orderedDate", label: "Ordered Date" },
         { key: "GiftCardValue", label: "Gift Card Value" },
-        { key: "comissionValue", label: "Comissions (5%)" },
+        { key: "commissionValue", label: "Comissions (5%)" },
         { key: "status", label: "Delivery Status" },
       ],
       mappedResult: [],
@@ -44,7 +44,7 @@ export default {
       .then((res) => {
         this.mappedResult = res.data;
         this.mappedResult.forEach(function (e) {
-          e.fullName = e.firstName + " " + e.LastName;
+          e.fullName = e.FirstName + " " + e.LastName;
           e.commissionValue = e.GiftCardValue * 0.05;
         });
       });
