@@ -9,10 +9,10 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
+          <b-navbar-nav >
             <b-nav-item :to="{path: '/order'}" v-if="!IsCurrentUserAdmin">New Order</b-nav-item>
             <b-nav-item :to="{path: '/orderHistory'}" v-if="!IsCurrentUserAdmin">Order History</b-nav-item>
-            <b-nav-item :to="{path: '/ManageOrders'}" v-if="IsCurrentUserAdmin">Report</b-nav-item>
+            <b-nav-item :to="{path: '/ManageOrders'}" v-if="IsCurrentUserAdmin">Manage Orders</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->

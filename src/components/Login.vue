@@ -15,15 +15,17 @@
             <label for="userpassword">Password</label>
             <input type="password" class="form-control" id="userPassword" v-model="user.userpassword" placeholder="Password" :class="{ 'is-invalid': $v.user.userpassword.$error }">
             <div v-if="!$v.user.userpassword.required" class="invalid-feedback">Password is required</div>
-            <div v-if="!$v.user.userpassword.minLength" class="invalid-feedback">Must be at least  {{$v.user.userpassword.$params.minLength.min}}  characters and contain a lowercase character, uppercase character and a number.
+            <div v-if="!$v.user.userpassword.minLength" class="invalid-feedback">Must be at least {{$v.user.userpassword.$params.minLength.min}} characters and contain a lowercase character, uppercase character and a number.
             </div>
-
           </div>
           <div>
             <button type="button" class="btn btn-primary float-left" v-on:click="Login()">Login</button>
           </div>
-          <button type="button" class="btn btn-secondary float-right" v-on:click="signUp()">SignUp</button>
+          <div>
+            <button type="button" class="btn btn-secondary float-right" v-on:click="signUp()">SignUp</button>
+          </div>
         </form>
+
       </div>
     </div>
   </div>
@@ -48,13 +50,9 @@ export default {
     user: {
       username: { required, minLength: minLength(4) },
       userpassword: { required, minLength: minLength(5) },
- 
-      // lastName: { required },
-      // email: { required, email },
-      // password: { required, minLength: minLength(6) },
-      // confirmPassword: { required, sameAsPassword: sameAs("password") },
     },
   },
+
   methods: {
     signUp: function () {
       this.$router.push({ path: "/signUp" });
@@ -90,6 +88,8 @@ export default {
         } else {
           this.$router.push({ path: "/order" });
         }
+      } else {
+        console.log("username and password didn't match");
       }
     },
   },

@@ -3,8 +3,8 @@
     <div>
       <navhead></navhead>
     </div>
-    <div>
-      <b-table responsive hover :items="mappedResult" :fields="fields" :tbody-tr-class="rowClass">
+    <div class="overflow-auto">
+      <b-table id="ordertable"  sticky-header="600px"  responsive hover :items="mappedResult" :fields="fields" :tbody-tr-class="rowClass" small>
         <template v-slot:cell(status)="data">
           <b class="text-info">{{data.value}}</b>
         </template>
@@ -35,12 +35,17 @@ export default {
       if (item.status == "Delivered") return "table-success";
     },
   },
-  computed: {},
+  computed: {
+    rows() {
+      return this.mappedResult.length;
+    },
+  },
   mounted() {
     this.$http
       .get(
         "http://localhost:3000/orders?userId=" +
-          this.$store.getters.getLoggedInUserId)
+          this.$store.getters.getLoggedInUserId
+      )
       .then((res) => {
         this.mappedResult = res.data;
         this.mappedResult.forEach(function (e) {

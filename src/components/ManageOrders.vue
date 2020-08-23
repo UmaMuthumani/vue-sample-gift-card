@@ -3,8 +3,8 @@
     <div>
       <navhead></navhead>
     </div>
-    <div>
-      <b-table ref="my-table" responsive hover :items="mappedResult" :fields="fields" :tbody-tr-class="rowClass">
+    <div class="overflow-auto">
+      <b-table ref="my-table" sticky-header="600px" responsive hover :items="mappedResult" :fields="fields" :tbody-tr-class="rowClass">
         <template v-slot:cell(id)="data">
           <b class="text-info">{{"GF"+ data.value}}</b>
         </template>

@@ -13,21 +13,16 @@
       "userEmail": "test@gmail.com",
       "Admin": false,
       "id": 2
+    },
+    {
+      "userName": "user2",
+      "userPassword": "user2Pass",
+      "userEmail": "user2@t.com",
+      "Admin": false,
+      "id": 3
     }
   ],
   "orders": [
-    {
-      "FirstName": "sfsdf",
-      "LastName": "",
-      "GiftCardValue": "232",
-      "TotalGiftCardValue": 243.60000000000002,
-      "MobileNumber": "sfsd",
-      "Address": "dfdg",
-      "userId": 2,
-      "status": "Delivered",
-      "orderedDate": "08/21/2020",
-      "id": 1
-    },
     {
       "FirstName": "user1 fn",
       "LastName": "user1 ln",
@@ -38,7 +33,55 @@
       "userId": 2,
       "status": "Delivered",
       "orderedDate": "08/22/2020",
+      "id": 1
+    },
+    {
+      "FirstName": "user2FN",
+      "LastName": "user2LN",
+      "GiftCardValue": "30",
+      "TotalGiftCardValue": 31.5,
+      "MobileNumber": "9876543210",
+      "Address": "234 Clark Street",
+      "userId": 3,
+      "status": "Ordered",
+      "orderedDate": "08/23/2020",
       "id": 2
+    },
+    {
+      "FirstName": "uma",
+      "LastName": "muthumani",
+      "GiftCardValue": "55",
+      "TotalGiftCardValue": 57.75,
+      "MobileNumber": "9874567890",
+      "Address": "111 Avenue",
+      "userId": 3,
+      "status": "Delivered",
+      "orderedDate": "08/23/2020",
+      "id": 3
+    },
+    {
+      "FirstName": "test user fn",
+      "LastName": "test user ln",
+      "GiftCardValue": "99",
+      "TotalGiftCardValue": 103.95,
+      "MobileNumber": "9872345790",
+      "Address": "5544 Drive",
+      "userId": 3,
+      "status": "Delivered",
+      "orderedDate": "08/23/2020",
+      "id": 4
+    },
+    {
+      "FirstName": "fn1",
+      "LastName": "ln2",
+      "GiftCardValue": "73",
+      "TotalGiftCardValue": 76.65,
+      "MobileNumber": "9876542618",
+      "Address": "test address",
+      "userId": 2,
+      "status": "Ordered",
+      "orderedDate": "08/23/2020",
+      "id": 5
     }
   ]
 }
