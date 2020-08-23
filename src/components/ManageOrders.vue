@@ -13,7 +13,7 @@
         </template>
 
         <template v-slot:cell(actions)="row">
-          <b-button size="sm" @click="info(row.item, row.index)" class="mr-1">
+          <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1" type="button">
             Mark as Delivered
           </b-button>
         </template>
@@ -52,9 +52,11 @@ export default {
       if (!item || type != "row") return;
       if (item.status == "Delivered") return "table-success";
     },
-    info(item, index) {
+    info(item, index, eventTarget) {
       let selectedOrderId = 0;
       selectedOrderId = item.id;
+      console.log(eventTarget);
+      console.log(eventTarget.data);
       this.$http
         .patch("http://localhost:3000/orders/" + selectedOrderId, {
           status: "Delivered",
@@ -63,36 +65,37 @@ export default {
           (res) => {
             console.log(`Row index: ${index}`);
             console.log("successfully updated" + res.status);
-           // this.$emit("update-record", item);
+            //this.$emit("update-record", item);
+            this.bindResult();
           },
           (err) => {
             console.log(err);
           }
         );
     },
+    bindResult: function () {
+      let total = 0;
+      this.$http
+        .get("http://localhost:3000/orders?status_ne=Delivered")
+        .then((res) => {
+          this.mappedResult = res.data;
+          this.mappedResult.forEach(function (e) {
+            e.fullName = e.FirstName + " " + e.LastName;
+            e.commissionValue = e.GiftCardValue * 0.05;
+            total = total + e.commissionValue;
+          });
+          this.summaryTotal = total;
+        });
+    },
     // updateRecord(e) {
-    //   alert(2);
+
     //   console.log(e.info);
     // },
   },
   computed: {},
   mounted() {
-    alert("mounted");
-    let total = 0;
-    this.$http
-      .get("http://localhost:3000/orders?status_ne=Delivered")
-      .then((res) => {
-        this.mappedResult = res.data;
-        this.mappedResult.forEach(function (e) {
-          e.fullName = e.FirstName + " " + e.LastName;
-          e.commissionValue = e.GiftCardValue * 0.05;
-          total = total + e.commissionValue;
-        });
-        this.summaryTotal = total;
-      });
-    this.$nextTick(function () {});
+    this.bindResult();
   },
-  updated() {
-  },
+  updated() {},
 };
 </script>

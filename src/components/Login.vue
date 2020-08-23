@@ -1,31 +1,38 @@
 <template>
-  <span>
-    <div class="d-flex align-items-center container h-100">
-      <div class="container-fluid">
-        <div class="row justify-conent-center align-items-center">
-          <div class="col col-sm-6 col-md-6">
-            <form>
-              <div class="form-group">
-                <label for="username">User Name</label>
-                <input type="text" class="form-control" id="username" aria-describedby="User Name" placeholder="Enter UserName" v-model="user.username">
-              </div>
-              <div class="form-group">
-                <label for="userpassword">Password</label>
-                <input type="password" class="form-control" id="userPassword" v-model="user.userpassword" placeholder="Password">
-              </div>
-              <div>
-                <button type="button" class="btn btn-primary float-left" v-on:click="Login()">Login</button>
-              </div>
-              <button type="button" class="btn btn-primary float-right" v-on:click="signUp()">SignUp</button>
-            </form>
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 ">
+        <form>
+          <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" class="form-control" id="username
+            " aria-describedby="User Name" placeholder="Enter UserName" v-model="user.username" :class="{ 'is-invalid': $v.user.username.$error }">
+            <div v-if="!$v.user.username.required" class="invalid-feedback">User Name is required</div>
+            <div v-if="!$v.user.username.minLength" class="invalid-feedback">User Name is must be atleast {{$v.user.username.$params.minLength.min}} characters</div>
+
           </div>
-        </div>
+          <div class="form-group">
+            <label for="userpassword">Password</label>
+            <input type="password" class="form-control" id="userPassword" v-model="user.userpassword" placeholder="Password" :class="{ 'is-invalid': $v.user.userpassword.$error }">
+            <div v-if="!$v.user.userpassword.required" class="invalid-feedback">Password is required</div>
+            <div v-if="!$v.user.userpassword.minLength" class="invalid-feedback">Must be at least  {{$v.user.userpassword.$params.minLength.min}}  characters and contain a lowercase character, uppercase character and a number.
+            </div>
+
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary float-left" v-on:click="Login()">Login</button>
+          </div>
+          <button type="button" class="btn btn-secondary float-right" v-on:click="signUp()">SignUp</button>
+        </form>
       </div>
     </div>
-  </span>
+  </div>
+
 </template>
 
 <script>
+// import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
   name: "Login",
   data: function () {
@@ -37,11 +44,26 @@ export default {
       users: [],
     };
   },
+  validations: {
+    user: {
+      username: { required, minLength: minLength(4) },
+      userpassword: { required, minLength: minLength(5) },
+ 
+      // lastName: { required },
+      // email: { required, email },
+      // password: { required, minLength: minLength(6) },
+      // confirmPassword: { required, sameAsPassword: sameAs("password") },
+    },
+  },
   methods: {
     signUp: function () {
       this.$router.push({ path: "/signUp" });
     },
     Login: function () {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
       this.$http
         .get("http://localhost:3000/consumers")
         .then((res) => {
@@ -73,3 +95,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+body,
+html {
+  height: 100%;
+}
+</style>
